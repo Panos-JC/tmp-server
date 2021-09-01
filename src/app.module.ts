@@ -14,28 +14,19 @@ import { MovieModule } from './movie/movie.module';
 import { TvModule } from './tv/tv.module';
 import { TmdbModule } from './tmdb/tmdb.module';
 
-let envFilePath = 'development.env';
-
-if (process.env.NODE_ENV === 'production') {
-  envFilePath = '.env.production';
-}
-
-console.log('Running in ', process.env.NODE_ENV);
-console.log('s in ', process.env.DB_HOST);
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'tmp-pg-db2',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       entities,
-      synchronize: true,
-      logging: true,
+      synchronize: process.env.NODE_ENV === 'development',
+      logging: process.env.NODE_ENV === 'development',
     }),
     TmdbModule,
     MovieModule,
