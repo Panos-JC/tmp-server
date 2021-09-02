@@ -25,7 +25,7 @@ import { TmdbModule } from './tmdb/tmdb.module';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       entities,
-      synchronize: process.env.NODE_ENV === 'development',
+      synchronize: true,
       logging: process.env.NODE_ENV === 'development',
     }),
     TmdbModule,
