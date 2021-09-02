@@ -36,8 +36,9 @@ console.log(process.env.DB_NAME);
       entities,
       synchronize: true,
       logging: process.env.NODE_ENV === 'development',
+      ssl: true,
       extra: {
-        ssl: true,
+        rejectUnauthorized: false,
       },
     }),
     TmdbModule,
