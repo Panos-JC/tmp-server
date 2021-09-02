@@ -13,6 +13,15 @@ import { entities } from './entities';
 import { MovieModule } from './movie/movie.module';
 import { TvModule } from './tv/tv.module';
 import { TmdbModule } from './tmdb/tmdb.module';
+import { config } from 'dotenv';
+
+config();
+
+console.log(process.env.DB_HOST);
+console.log(process.env.DB_PORT);
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASS);
+console.log(process.env.DB_NAME);
 
 @Module({
   imports: [
